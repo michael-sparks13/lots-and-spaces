@@ -11,4 +11,8 @@ From Westchester County's GeoHub
 - [Open Spaces](https://gis.westchestergov.com/datasets/wcgis::open-space/explore?location=41.122403%2C-73.734250%2C11.00)
 
 
-- how are open spaces defined
+### In progress!!!!!
+- parking lot & space layers don't show at correct zoom level
+- update index.html design 
+- add legend 
+-- plan for legend: adding via [mapboxgl](https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/)
