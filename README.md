@@ -7,7 +7,13 @@ Examines Parking Lots and Open Spaces in Westchester County, NY. Westchester is 
 
 ## Findings and Areas for Futher Exploration
 #### Findings
-# write some major takeway
+While the vast majority of parking lots occur in the southern half of Westchester, that doesn't mean it is devoid of open space. 
+
+Most of the county's parking lots are concentrated in two areas:
+- along travel corridors like I-95 from north to south and 287 from east to west. 
+- on the edges of the Bronx, particulary in Pelham Manor, Mount Vernon and Yonkers. 
+
+How Westchester uses its open space:
 - 11 sq miles of parking lots
 - 3 sq miles of cemetaries!
 - Over 42 sq miles of state & county parklands
