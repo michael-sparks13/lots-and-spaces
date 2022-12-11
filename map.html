@@ -118,16 +118,6 @@
               // ----------------------------------------------
             });
 
-            // Add geolocate control to the map.
-            map.addControl(
-              new mapboxgl.GeolocateControl({
-                positionOptions: {
-                  enableHighAccuracy: true,
-                },
-                trackUserLocation: true,
-              })
-            );
-
             map.on("load", () => {
               const layers = ["Open spaces", "Parking lots"];
               const colors = ["#7cfc00", "#000"];
@@ -229,7 +219,7 @@
       link.id = id;
       link.href = '#';
       link.textContent = id;
-      link.className = 'active';
+      link.className = '';
 
       // Show or hide layer when the toggle is clicked.
       link.onclick = function (e) {
