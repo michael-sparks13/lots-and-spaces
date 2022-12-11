@@ -1,48 +1,263 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8' />
-  <title>Westchester Lots and Spaces</title> 
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet" />
-  <style>
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; width:100%; }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Westchester Lots and Spaces</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
 
-<div id='map'></div>
+      .map-overlay {
+        position: absolute;
+        bottom: 5%;
+        right: 0;
+        background: #fff;
+        margin-right: 20px;
+        font-family: "Lato", sans-serif;
+        overflow: auto;
+        border-radius: 3px;
+      }
 
-  <script>
-    // updated to my access token
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWljaGFlbHNwYXJrczEzIiwiYSI6ImNsMmRoczNjMDAwMWkzYm10dzRyb3gxenQifQ.56aTkg40fV3OsQibg27VEA';
-    // ------------------------------------------------
+      #legend {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        height: 7%;
+        width: 9%;
+      }
 
-    var map = new mapboxgl.Map({
-      container: 'map',
+      .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
 
-      // #uses lots-monochrome style
-      style: 'mapbox://styles/michaelsparks13/clbh6ef8l002814n3lpyg658m',
-      // ----------------------------------------------
+      #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 15%;
+        right: 2%;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        font-family: "Open Sans", sans-serif;
+      }
 
-      // centers on Westchester County, NY
-      center: [-73.780,41.152],
-      minZoom: 9.15
-      // ----------------------------------------------
+      #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        text-align: center;
+      }
 
-    });
+      #menu a:last-child {
+        border: none;
+      }
 
-    // Add geolocate control to the map.
-     map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true
-    }));
-  </script>
+      #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+      }
 
-</body>
+      #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+      }
 
+      #menu a.active:hover {
+        background: #3074a4;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <nav id="menu"></nav>
+    <div class="map-overlay" id="legend"></div>
+
+    <script>
+            // updated to my access token
+            mapboxgl.accessToken =
+              "pk.eyJ1IjoibWljaGFlbHNwYXJrczEzIiwiYSI6ImNsMmRoczNjMDAwMWkzYm10dzRyb3gxenQifQ.56aTkg40fV3OsQibg27VEA";
+            // ------------------------------------------------
+
+            var map = new mapboxgl.Map({
+              container: "map",
+
+              // #uses lots-monochrome style
+              style: "mapbox://styles/michaelsparks13/clbh6ef8l002814n3lpyg658m",
+              // ----------------------------------------------
+
+              // centers on Westchester County, NY
+              center: [-73.78, 41.152],
+              minZoom: 9.15,
+              // ----------------------------------------------
+            });
+
+            // Add geolocate control to the map.
+            map.addControl(
+              new mapboxgl.GeolocateControl({
+                positionOptions: {
+                  enableHighAccuracy: true,
+                },
+                trackUserLocation: true,
+              })
+            );
+
+            map.on("load", () => {
+              const layers = ["Open spaces", "Parking lots"];
+              const colors = ["#7cfc00", "#000"];
+
+              const legend = document.getElementById("legend");
+
+              layers.forEach((layer, i) => {
+                const color = colors[i];
+                const item = document.createElement("div");
+                const key = document.createElement("span");
+                key.className = "legend-key";
+                key.style.backgroundColor = color;
+
+                const value = document.createElement("span");
+                value.innerHTML = `${layer}`;
+                item.appendChild(key);
+                item.appendChild(value);
+                legend.appendChild(item);
+              });
+
+              // add layers that we'll show and hide
+              // add layer for areas where white is the predominate race
+              map.addSource("white", {
+                type: "vector",
+                url: "mapbox://michaelsparks13.aabz939g",
+              });
+              map.addLayer({
+                id: "white",
+                type: "fill",
+                source: "white",
+                layout: {
+                  visibility: "none",
+                },
+                paint: {
+                  "fill-color": "rgba(55,148,179,1)",
+                  "fill-opacity": 0.5
+                },
+                "source-layer": "white",
+            });
+
+            // add layer for areas where black is the predominate race
+            map.addSource("black", {
+                type: "vector",
+                url: "mapbox://michaelsparks13.d5inzm9p",
+              });
+              map.addLayer({
+                id: "black",
+                type: "fill",
+                source: "black",
+                layout: {
+                  visibility: "none",
+                },
+                paint: {
+                  "fill-color": "yellow",
+                  "fill-opacity": 0.5
+                },
+                "source-layer": "black",
+              });
+
+               // add layer for areas where hispanic is the predominate race
+            map.addSource("hispanic", {
+                type: "vector",
+                url: "mapbox://michaelsparks13.bgwazpsn",
+              });
+              map.addLayer({
+                id: "hispanic",
+                type: "fill",
+                source: "hispanic",
+                layout: {
+                  visibility: "none",
+                },
+                paint: {
+                  "fill-color": "orange",
+                  "fill-opacity": 0.5
+                },
+                "source-layer": "hispanic",
+              });
+
+            });
+          map.on('idle', () => {
+      // If these two layers were not added to the map, abort
+      if (!map.getLayer('white') || (!map.getLayer('black'))
+      || (!map.getLayer('black'))) {
+      return;
+      }
+
+      // Enumerate ids of the layers.
+      const toggleableLayerIds = ['white', 'black', 'hispanic'];
+
+      // Set up the corresponding toggle button for each layer.
+      for (const id of toggleableLayerIds) {
+      // Skip layers that already have a button set up.
+      if (document.getElementById(id)) {
+      continue;
+      }
+
+      // Create a link.
+      const link = document.createElement('a');
+      link.id = id;
+      link.href = '#';
+      link.textContent = id;
+      link.className = 'active';
+
+      // Show or hide layer when the toggle is clicked.
+      link.onclick = function (e) {
+      const clickedLayer = this.textContent;
+      e.preventDefault();
+      e.stopPropagation();
+
+      const visibility = map.getLayoutProperty(
+      clickedLayer,
+      'visibility'
+      );
+
+      // Toggle layer visibility by changing the layout object's visibility property.
+      if (visibility === 'visible') {
+      map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+      this.className = '';
+      } else {
+      this.className = 'active';
+      map.setLayoutProperty(
+      clickedLayer,
+      'visibility',
+      'visible'
+      );
+      }
+      };
+      const layers = document.getElementById('menu');
+      layers.appendChild(link);
+      }
+          });
+    </script>
+  </body>
 </html>
