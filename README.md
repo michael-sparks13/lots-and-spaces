@@ -21,9 +21,9 @@ What's more, the vast, vast majority of the county's parking lots are in the sou
 
 The story starts to get really interesting when we add race into the mix. First, it's important to note that Westchester is a majority white:
 
-52% White alone
-26% Hispanic or Latino
-17% Black or African American
+- 52% White alone
+- 26% Hispanic or Latino
+- 17% Black or African American
 
 White is the predominate race basically everywhere in the county except Yonkers and Mount Vernon. When we look at areas where the majority of the population is either Hispanic or Black, those areas correlate almost entirely with the major roads & transportation hubs.
 

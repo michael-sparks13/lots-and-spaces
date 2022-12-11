@@ -28,10 +28,10 @@
       body {
         margin: 0;
         padding: 0;
-        background: #c7c9c8;
+        background: rgb(0, 0, 0);
         font-family: "Lato", sans-serif;
-        font-weight: 300;
-        color: #3d3d3d;
+        font-weight: 400;
+        color: #009bda;
         font-size: 1.1em;
       }
 
@@ -47,8 +47,8 @@
 
       h1 {
         font-family: "Lato", sans-serif;
-        font-weight: 900;
-        font-size: 2.8em;
+        font-weight: 800;
+        font-size: 1.8em;
         font-style: italic;
         /* The em unit. 3x the current size */
         letter-spacing: 0.01em;
@@ -59,7 +59,7 @@
       h2 {
         font-family: "Lato", sans-serif;
         font-weight: 300;
-        color: #63666a;
+        color: #0033a0;
         font-size: 1.5em;
         letter-spacing: 0.06em;
         font-style: italic;
@@ -67,29 +67,19 @@
       }
 
       p {
-        font-size: 1.15em;
-        line-height: 1.8em;
+        font-size: 1em;
+        line-height: 1.5em;
         margin: 0 0 25px 0;
       }
 
       a {
-        color: #15397f;
+        color: #c7c9c8;
         text-decoration: none;
+        font-size: 0.8em;
       }
 
       a:hover {
         text-decoration: underline;
-      }
-
-      ul {
-        padding: 0px 20px 4px 20px;
-        /* font-size: 0.96em; */
-        line-height: 1.6em;
-        color: #63666a;
-      }
-
-      li {
-        margin: 10px 0;
       }
 
       #map {
@@ -100,8 +90,6 @@
       .max-image-width {
         width: 100%;
       }
-
-      /* add custom style class here */
 
       .linkbox {
         margin: 3px 0 20px 0;
@@ -123,12 +111,12 @@
         padding-right: 20px;
       }
 
-      .column {
-        float: left;
-        width: 48%;
-      }
-
       /* Clear floats after the columns */
+
+      .row {
+        display: flexbox;
+        flex-direction: row;
+      }
 
       .row:after {
         content: "";
@@ -141,7 +129,6 @@
         width: 75px;
         margin: -8px 10px -8px 0;
       }
-
 
       /* When browser is 800px wide or less */
 
@@ -160,72 +147,78 @@
       <a href="map.html" class="linkbox">Full-screen version</a>
 
       <!-- <img src="arches.svg" class="svg-title" /> -->
-      <h1>Parking Lots and Open Spaces in Westchester</h1>
+      <h1>Parking Lots, Open Spaces and Human Races in Westchester County</h1>
       <h2>University of Kentucky Geography</h2>
       <div class="row">
         <div class="first-column">
           <p>
-            Data from
-            <a href="https://gis.westchestergov.com/"
-              >Westchester County GeoHub</a
-            >
-            Accessed December 2022.
+            Examines Parking Lots and Open Spaces in Westchester County, NY.
+            Westchester is a 450 sq. mile county just a few minutes north of
+            NYC. One million people live there and, if we think about our built
+            environment as a physical manifestation of our vales, the relative
+            amount of parking lots vs. open spaces in Westchester tells us a lot
+            about what we value.
           </p>
-          <h3>How Westchester uses its space</h3>
+          <p>
+            Of course, our built environment is influence by our economic and
+            sociographic conditions. Play around with the "predeominate race"
+            toggle to see how Westchester residents' surroundings vary by race. And don't forget to zoom in!
+          </p>
+        </div>
+
+        <div class="column">
+          <h2>How Westchester Uses Its Space</h2>
           <ul>
             <li>11 sq miles of parking lots</li>
-            <li>3 sq miles of cemetaries!</li>
             <li>Over 42 sq miles of state & county parklands</li>
             <li>
               31 sq miles of water supply lands (much of which provides NYC's
               water)
             </li>
+            <li>3 sq miles of cemetaries!</li>
           </ul>
+
+          <p>
+            Most of the county's parking lots are concentrated in two areas:
+          </p>
+          <ul>
+            <li>
+              Along travel corridors like I-95 from north to south and 287 from
+              east to west.
+            </li>
+            <li>
+              On the edges of the Bronx, particulary in Pelham Manor, Mount
+              Vernon and Yonkers.
+            </li>
+          </ul>
+
+          <p>
+            What's more, the vast, vast majority of the county's parking lots
+            are in the southern half of the county, below White Plains. The
+            story starts to get really interesting when we add race into the
+            mix. First, it's important to note that Westchester is a majority
+            white: 52% White alone 26% Hispanic or Latino 17% Black or African
+            American White is the predominate race basically everywhere in the
+            county except Yonkers and Mount Vernon. When we look at areas where
+            the majority of the population is either Hispanic or Black, those
+            areas correlate almost entirely with the major roads &
+            transportation hubs. Are Black and Hispanic persons in
+            Westchester–one of the most affluent county's in the
+            population–exposed to more car pollution than its White residents?
+            More study is needed, but the data we have available raises
+            important questions.
+          </p>
         </div>
       </div>
-      <div class="row">
-        <h3>Mapping Workflow</h3>
-        <ul>
-          <li>Acquire data vis westchestergov</li>
-          <li>use Tippecanoe to adjust available zoom layers</li>
-          <li>Upload to and design with Mapbox</li>
-          <ul>
-            <li>Design left to do:</li>
-          </ul>
-          <ol>
-            <li>
-              <a
-                href="https://docs.mapbox.com/mapbox-gl-js/example/toggle-layers/"
-                >show and hide race layers on click</a
-              >
-            </li>
-            <li>adjust admin labels</li>
-            <li>adjust layer labels</li>
-            <li>adjust styling rules for labels</li>
-            <li>adjust styling rules for layers</li>
-          </ol>
-          <li>will add legend via mapbox gl</li>
-          <ul>
-            <li>right now, legend is:</li>
-            <li>green = open spaces</li>
-            <li>red = parking lots</li>
-            <li>yellow = area where the predominate race is white</li>
-            <li>
-              blue = area where the predominate race is hispanic or latino
-            </li>
-            <li>
-              burgandy =# area where the predominate race is black or african
-              american
-            </li>
-          </ul>
-          <li>to be continued...</li>
-        </ul>
+      <div class="column">
+        <p>
+          For full details on the data sources, workflow, and processes see the
+          <a href="https://github.com/michael-sparks13/lots-and-spaces"
+            >ReadMe</a
+          >
+          on Github.
+        </p>
       </div>
-      <!-- <div class="row">
-        <div class="first-column"> -->
-
-      <!-- </div>
-      </div> -->
 
       <hr />
       <h4>
