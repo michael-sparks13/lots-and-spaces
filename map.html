@@ -155,7 +155,7 @@
                 url: "mapbox://michaelsparks13.aabz939g",
               });
               map.addLayer({
-                id: "white",
+                id: "Predominantly white",
                 type: "fill",
                 source: "white",
                 layout: {
@@ -174,7 +174,7 @@
                 url: "mapbox://michaelsparks13.d5inzm9p",
               });
               map.addLayer({
-                id: "black",
+                id: "Predominantly black",
                 type: "fill",
                 source: "black",
                 layout: {
@@ -193,7 +193,7 @@
                 url: "mapbox://michaelsparks13.bgwazpsn",
               });
               map.addLayer({
-                id: "hispanic",
+                id: "Predominantly hispanic",
                 type: "fill",
                 source: "hispanic",
                 layout: {
@@ -209,13 +209,13 @@
             });
           map.on('idle', () => {
       // If these two layers were not added to the map, abort
-      if (!map.getLayer('white') || (!map.getLayer('black'))
-      || (!map.getLayer('black'))) {
+      if (!map.getLayer('Predominantly white') || (!map.getLayer('Predominantly black'))
+      || (!map.getLayer('Predominantly hispanic'))) {
       return;
       }
 
       // Enumerate ids of the layers.
-      const toggleableLayerIds = ['white', 'black', 'hispanic'];
+      const toggleableLayerIds = ['Predominantly white', 'Predominantly black', 'Predominantly hispanic'];
 
       // Set up the corresponding toggle button for each layer.
       for (const id of toggleableLayerIds) {
