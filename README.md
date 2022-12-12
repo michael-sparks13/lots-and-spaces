@@ -12,6 +12,7 @@ How Westchester uses its space:
 - Over 42 sq miles of state & county parklands
 - 31 sq miles of water supply lands (much of which provides NYC's water)
 - 3 sq miles of cemetaries!
+"Open space" is basically any non-built environment, including public & private parks. Water supply lands, and farms. 
 
 Most of the county's parking lots are concentrated in two areas:
 - along travel corridors like I-95 from north to south and 287 from east to west. 
