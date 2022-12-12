@@ -50,6 +50,6 @@ From Westchester County's GeoHub
 - Once all the correct data was loaded into Mapbox, it was a matter of testing out different designs. And different designs. And different designs. 
 - Once I settled on design for the lots & spaces data that worked well with the basemap, I went back to add the "races" data. 
 - I acquired the 2020 Population by Race data from Westchester County. 
-- After exploring the data in Mapbox studio, I realized I needed it in a different format to make use of it. I used Jupyter Notebooks and Geopandas to create three unique geoJSON files that I could use (one for each race analyzed). 
+- After exploring the data in Mapbox studio, I realized I needed it in a different format to make use of it. I used Jupyter Notebooks and Geopandas to create three unique geoJSON files that I could use (one for each race analyzed; notebook included in repo). 
 - Similar to what I had to do with the lots & spaces data, I again used Tippecanoe to add the correct zoom layers. 
 - Last, I used Mapbox GL JS to add the interactivity components. Thanks to the great Mapbox documentation for making this simple.
